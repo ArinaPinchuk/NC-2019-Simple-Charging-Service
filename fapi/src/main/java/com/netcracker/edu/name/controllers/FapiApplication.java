@@ -1,4 +1,4 @@
-package com.netcracker.edu.name;
+package com.netcracker.edu.name.controllers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
