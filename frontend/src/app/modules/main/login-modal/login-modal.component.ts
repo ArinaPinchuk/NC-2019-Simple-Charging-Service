@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-modal.component.css']
 })
 export class LoginModalComponent implements OnInit {
+  public aaa: string;
 
   constructor() { }
 

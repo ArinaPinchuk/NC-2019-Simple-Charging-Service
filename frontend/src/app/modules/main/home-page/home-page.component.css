@@ -23,8 +23,9 @@ h2 {
   z-index: 2;
 }
 
-#myModal ._block {
-  display: block;
+button
+{
+  position:relative;;
+  z-index: 2;
 }
-
 

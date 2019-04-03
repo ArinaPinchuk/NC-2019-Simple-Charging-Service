@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/NC-2019-Simple-Charging-Service.iml" filepath="$PROJECT_DIR$/.idea/NC-2019-Simple-Charging-Service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/backend/backend.iml" filepath="$PROJECT_DIR$/backend/backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend2/backend2.iml" filepath="$PROJECT_DIR$/backend2/backend2.iml" />
       <module fileurl="file://$PROJECT_DIR$/fapi/fapi.iml" filepath="$PROJECT_DIR$/fapi/fapi.iml" />
     </modules>
   </component>

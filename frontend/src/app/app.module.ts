@@ -50,6 +50,11 @@ const routes=[{path:'', component: HomePageComponent},
     ModalModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
+
+  exports: [
+    LoginModalComponent
+  ],
+  entryComponents: [LoginModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
