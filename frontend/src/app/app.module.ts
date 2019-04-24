@@ -16,8 +16,7 @@ import { AccountMenuComponent } from './modules/account/account-menu/account-men
 import {TestComponent} from "./modules/main/test/test.component";
 import {ModalModule} from "ngx-bootstrap";
 import { LoginModalComponent } from './modules/main/login-modal/login-modal.component';
-
-
+import {RoleModule} from "./modules/account/account-page/role.module";
 
 
 const routes=[{path:'', component: HomePageComponent},
@@ -37,22 +36,23 @@ const routes=[{path:'', component: HomePageComponent},
     TestComponent,
     LoginPageComponent,
     ServicesPageComponent,
-    AccountPageComponent,
     MenuComponent,
     EWalletPageComponent,
-    AccountMenuComponent,
+    //AccountMenuComponent,
     LoginModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RoleModule,
     ModalModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
 
   exports: [
-    LoginModalComponent
+    LoginModalComponent,
+    //ccountMenuComponent
   ],
   entryComponents: [LoginModalComponent],
   providers: [],

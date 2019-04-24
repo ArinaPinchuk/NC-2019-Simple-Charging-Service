@@ -1,71 +1,96 @@
 <app-account-menu></app-account-menu>
+<div *ngIf="ready">
+  <h1 class="display-4">{{role.roleName}}</h1>
+  <p class="text-center">{{role.roleId}}</p>
+  <h1 class="display-4">{{role.roleName}}</h1>
+</div>
+<div *ngIf="ready_prod">
+  <li *ngFor="let product of products">{{product.name}} {{product.price}}$</li>
+</div>
+<!--<h1 class="display-4">{{products[2].image}}</h1>-->
+<!--<img ng-src="data:image/JPEG;base64,{{products[2].image}}">-->
+<table>
+  <tr *ngFor="let product of products">
+    <td><h1>{{product.name}}</h1></td>
+  </tr>
+</table>
+
 <div class="row">
-  <div class="col-md-10"><h1>Ivan Ivanov</h1> <h2>ivIv123</h2></div>
+  <div class="col-md-10"><h1>Ivan Ivanov</h1>
+    <h2>ivIv123</h2></div>
 </div>
 <div><br></div>
 <div class="row">
   <div class="col-md-1"></div>
-  <div class="col-md-2"><button class="btn btn-primary" (click)="showTableSubscr()">Subscriptions</button></div>
-  <div class="col-md-2"><button class="btn btn-danger" (click)="showTableServices()">Services</button></div>
+  <div class="col-md-2">
+    <button class="btn btn-primary" (click)="showTableSubscr()">Subscriptions</button>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-danger" (click)="showTableServices()">Services</button>
+  </div>
 </div>
 <div><br></div>
 <div class="row">
-  <div class="col-md-4"><div class="table-responsive" *ngIf="isTableSubscr">
-    <table class="table table-hover table-bordered">
-      <thead>
-      <tr class="table-active">
-        <th>Services</th>
-        <th>$ per day</th>
-        <th>Rest days</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th>Netflix</th>
-        <th>0.8</th>
-        <th>14</th>
-      </tr>
-      <tr>
-        <th>Yandex Music</th>
-        <th>0.4</th>
-        <th>10</th>
-      </tr>
-      <tr>
-        <th>Ivi</th>
-        <th>0.6</th>
-        <th>19</th>
-      </tr>
-      </tbody>
-    </table>
-  </div></div>
+  <div class="col-md-4">
+    <div class="table-responsive" *ngIf="isTableSubscr">
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr class="table-active">
+          <th>Services</th>
+          <th>$ per day</th>
+          <th>Rest days</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th>Netflix</th>
+          <th>0.8</th>
+          <th>14</th>
+        </tr>
+        <tr>
+          <th>Yandex Music</th>
+          <th>0.4</th>
+          <th>10</th>
+        </tr>
+        <tr>
+          <th>Ivi</th>
+          <th>0.6</th>
+          <th>19</th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
   <div class="col-md-1"></div>
-  <div class="col-md-4"><div class="table-responsive" *ngIf="isTableServices">
-    <table class="table table-hover table-bordered">
-      <thead>
-      <tr class="table-active">
-        <th>Services</th>
-        <th>$ per day</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th>Netflix</th>
-        <th>0.8</th>
-      </tr>
-      <tr>
-        <th>Yandex Music</th>
-        <th>0.4</th>
-      </tr>
-      <tr>
-        <th>Ivi</th>
-        <th>0.6</th>
-      </tr>
-      <tr>
-        <th>Vk Music</th>
-        <th>0.4</th>
-      </tr>
-      </tbody>
-    </table>
-  </div></div>
+  <div class="col-md-4">
+    <div class="table-responsive" *ngIf="isTableServices">
+      <table class="table table-hover table-bordered">
+        <thead>
+        <tr class="table-active">
+          <th>Services</th>
+          <th>$ per day</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th>Netflix</th>
+          <th>0.8</th>
+        </tr>
+        <tr>
+          <th>Yandex Music</th>
+          <th>0.4</th>
+        </tr>
+        <tr>
+          <th>Ivi</th>
+          <th>0.6</th>
+        </tr>
+        <tr>
+          <th>Vk Music</th>
+          <th>0.4</th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 

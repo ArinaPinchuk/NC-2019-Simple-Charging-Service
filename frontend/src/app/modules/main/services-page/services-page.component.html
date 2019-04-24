@@ -1,7 +1,17 @@
 <app-menu></app-menu>
-<div class="container p">
-  <div class="row">
-    <div class="col-md-6">
+<div class="container">
+    <div *ngIf="ready">
+      <div class="row" *ngFor="let item of products let i = index">
+      <div class="col-md-3 p" >{{item.name}}</div>
+      <div class="col-md-4 " > <img src={{item.image}} alt="image"></div>
+        <div class="col-md-5">
+          <div  *ngIf="!isMore[i]" class="descr">{{item.shortDescription}}...
+            <button  class="btn btn-primary"  (click)="showMore(i)">More</button></div>
+          <div  *ngIf="isMore[i]" class="descr">{{item.longDescription}} <button  class="btn btn-primary" (click)="showMore(i)">Hide</button> </div>
+        </div>
+    </div>
+
+    <!--<div class="col-md-6">
       <img src="assets/images/yandex.jpg" alt="image">
     </div>
     <div class="col-md-6" >
@@ -14,6 +24,6 @@
     </div>
     <div class="col-md-6" >
       <img src="assets/images/vk.png" alt="image">
-    </div>
+    </div>-->
   </div>
 </div>

@@ -1,7 +1,6 @@
 package com.netcracker.edu.backend2.entities;
 
 import javax.persistence.*;
-import java.util.Arrays;
 
 @Entity
 @Table(name = "products", schema = "charging_service", catalog = "")
@@ -11,7 +10,7 @@ public class ProductsEntity {
     private double price;
     private String shortDescription;
     private String longDescription;
-    private byte[] image;
+    private String image;
     private UsersEntity usersByCreatorId;
 
     @Id
@@ -66,11 +65,11 @@ public class ProductsEntity {
 
     @Basic
     @Column(name = "image")
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -88,7 +87,7 @@ public class ProductsEntity {
             return false;
         if (longDescription != null ? !longDescription.equals(that.longDescription) : that.longDescription != null)
             return false;
-        if (!Arrays.equals(image, that.image)) return false;
+        if (image != null ? !image.equals(that.image) : that.image != null) return false;
 
         return true;
     }
@@ -103,7 +102,7 @@ public class ProductsEntity {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (shortDescription != null ? shortDescription.hashCode() : 0);
         result = 31 * result + (longDescription != null ? longDescription.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(image);
+        result = 31 * result + (image != null ? image.hashCode() : 0);
         return result;
     }
 

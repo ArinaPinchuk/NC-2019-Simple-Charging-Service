@@ -12,7 +12,7 @@ public class UsersEntity {
     private String login;
     private String password;
     private StatusEntity statusByStatusId;
-    private EwalletsEntity ewalletsByEWalletId;
+    private WalletsEntity walletsByWalletId;
     private RoleEntity roleByRoleId;
 
     @Id
@@ -114,13 +114,13 @@ public class UsersEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "eWallet_id", referencedColumnName = "ewallet_id", nullable = false)
-    public EwalletsEntity getEwalletsByEWalletId() {
-        return ewalletsByEWalletId;
+    @JoinColumn(name = "wallet_id", referencedColumnName = "wallet_id", nullable = false)
+    public WalletsEntity getWalletsByWalletId() {
+        return walletsByWalletId;
     }
 
-    public void setEwalletsByEWalletId(EwalletsEntity ewalletsByEWalletId) {
-        this.ewalletsByEWalletId = ewalletsByEWalletId;
+    public void setWalletsByWalletId(WalletsEntity walletsByWalletId) {
+        this.walletsByWalletId = walletsByWalletId;
     }
 
     @ManyToOne
