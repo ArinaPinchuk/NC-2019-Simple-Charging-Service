@@ -5,16 +5,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "wallets", schema = "charging_service", catalog = "")
 public class WalletsEntity {
-    private int walletId;
+    private Integer walletId;
     private double balance;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "wallet_id")
-    public int getWalletId() {
+    public Integer getWalletId() {
         return walletId;
     }
 
-    public void setWalletId(int walletId) {
+    public void setWalletId(Integer walletId) {
         this.walletId = walletId;
     }
 

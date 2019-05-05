@@ -10,7 +10,7 @@ public class ProductsEntity {
     private String shortDescription;
     private String longDescription;
     private String image;
-    private UsersEntity usersByCreatorId;
+
 
     @Override
     public boolean equals(Object o) {
@@ -22,13 +22,13 @@ public class ProductsEntity {
                 Objects.equals(name, that.name) &&
                 Objects.equals(shortDescription, that.shortDescription) &&
                 Objects.equals(longDescription, that.longDescription) &&
-                Objects.equals(image, that.image) &&
-                Objects.equals(usersByCreatorId, that.usersByCreatorId);
+                Objects.equals(image, that.image);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, name, price, shortDescription, longDescription, image, usersByCreatorId);
+        return Objects.hash(productId, name, price, shortDescription, longDescription, image);
     }
 
     public void setProductId(int productId) {
@@ -55,10 +55,6 @@ public class ProductsEntity {
         this.image = image;
     }
 
-    public void setUsersByCreatorId(UsersEntity usersByCreatorId) {
-        this.usersByCreatorId = usersByCreatorId;
-    }
-
     public int getProductId() {
         return productId;
     }
@@ -81,9 +77,5 @@ public class ProductsEntity {
 
     public String getImage() {
         return image;
-    }
-
-    public UsersEntity getUsersByCreatorId() {
-        return usersByCreatorId;
     }
 }

@@ -1,7 +1,9 @@
 package com.netcracker.edu.name.controllers.models;
 
-import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.Objects;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RoleEntity {
     private int roleId;
     private String roleName;

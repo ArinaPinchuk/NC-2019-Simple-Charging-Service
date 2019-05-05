@@ -2,9 +2,9 @@
 <div  class="container parent">
   <form>
     <div class="form-group">
-      <label for="inputEmail">Email address</label>
-      <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <label for="inputLogin">Email address</label>
+      <input type="login" class="form-control" id="inputLogin" aria-describedby="loginHelp" placeholder="Enter login" #login>
+      <small id="loginHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
       <label for="inputPassword1">Password</label>
@@ -15,7 +15,7 @@
       <label class="form-check-label" for="remember">Remember me</label>
     </div>
     <div class="child">
-      <button type="submit" class="btn btn-primary" (click)="clickFunc()">Log in</button>
+      <button type="submit" class="btn btn-primary" (click)="clickFunc(login.value)">Log in</button>
     </div>
   </form>
 </div>

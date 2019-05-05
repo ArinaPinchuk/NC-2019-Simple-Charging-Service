@@ -3,6 +3,8 @@ label{
   font-family: Verdana, Arial, Helvetica, sans-serif;
   color:#2F4F4F;
   font-size: 110%;
+  z-index: 10;
+  position: relative;
 }
 .parent
 {
@@ -11,4 +13,17 @@ label{
 .child
 {
   margin-top: 15px;
+}
+.label_marg
+{
+  margin-left: 10px;
+}
+.сur
+{
+  cursor: pointer;
+}
+button
+{
+  position: relative;
+  z-index: 10;
 }

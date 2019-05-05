@@ -12,8 +12,8 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
   }
-  clickFunc(): void {
-    this._router.navigate(['/account']);
+  clickFunc(login:string): void {
+    this._router.navigate(['account', login]);
   }
 
 }

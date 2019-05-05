@@ -1,8 +1,7 @@
 package com.netcracker.edu.backend2.controllers;
 
-
-import com.netcracker.edu.backend2.entities.RoleEntity;
-import com.netcracker.edu.backend2.service.RoleService;
+import com.netcracker.edu.backend2.entities.WalletsEntity;
+import com.netcracker.edu.backend2.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,19 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
-@RequestMapping("api/role")
-public class RoleController {
+@RequestMapping("api/wallet")
+public class WalletController {
     @Autowired
-    private RoleService roleService;
+    WalletService walletService;
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<RoleEntity> getAllRoles() {
-        return roleService.findAll();
+    public List<WalletsEntity> getAllWallets() {
+        return walletService.findAll();
     }
     @RequestMapping(method = RequestMethod.POST)
-    public RoleEntity save(@RequestBody RoleEntity role) {
-        return roleService.save(role);
+    public WalletsEntity save(@RequestBody WalletsEntity wallet)
+    {
+        return  walletService.save(wallet);
     }
-}
 
+}

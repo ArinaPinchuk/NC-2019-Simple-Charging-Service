@@ -3,42 +3,46 @@
   <form>
     <div class="form-group">
       <label for="inputFirstName">First name</label>
-      <input type="email" class="form-control" id="inputFirstName"  placeholder="Enter first name">
+      <input type="text" class="form-control" name="firstName" id="inputFirstName"  placeholder="Enter first name" [(ngModel)]="newUser.firstName" #firstName="ngModel" required/>
     </div>
     <div class="form-group">
       <label for="inputSecondName">Second name</label>
-      <input type="email" class="form-control" id="inputSecondName"  placeholder="Enter second name">
+      <input type="text" class="form-control" name="secondName" id="inputSecondName"  placeholder="Enter second name" [(ngModel)]="newUser.secondName" #secondName="ngModel" required/>
     </div>
     <div class="form-group">
       <label for="inputEmail">Email address</label>
-      <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+      <input type="text" class="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="newUser.email" #email="ngModel" required/>
     </div>
     <div class="form-group">
+      <label for="inputLogin">Login</label>
+      <input type="text" class="form-control" name= "login" id="inputLogin"  placeholder="Enter login" [(ngModel)]="newUser.login" #login="ngModel" required/>
+    </div>
+
+
+    <div class="form-group">
       <label for="inputPassword1">Password</label>
-      <input type="password" class="form-control" id="inputPassword1" placeholder="Password">
+      <input type="text" class="form-control" name="password" id="inputPassword1" placeholder="Password" [(ngModel)]="newUser.password" #password="ngModel" required/>
     </div>
     <div class="form-group">
       <label for="inputPassword2">Repeat password</label>
-      <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+      <input type="text" class="form-control" id="inputPassword2" placeholder="Password">
     </div>
-<!--    <div class="child">
-    <button class="btn btn-success" data-toggle="modal" data-target="#billing">Sign up</button>
-      <div id="billing" class="modal fade">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button class="close" data-dismiss="modal">x</button>
-              <h4 class="modal-title">заголовок</h4>
-            </div>
-            <div class="modal-body"></div>
-          </div>
-        </div>
-      </div>
-    </div>-->
-    <!--<button (click)="ClickButton()"></button>-->
-    <!--<popup>-->
-      <!--bla bla bla-->
-    <!--</popup>-->
+    <div class="form-group">
+      <label>Role:</label>
+      <br>
+      <label>
+        <input type="radio" value="2" name="role" [(ngModel)]="role">
+        User
+      </label>
+      <label class="label_marg">
+        <input  type="radio"  value="1" name="role" [(ngModel)]="role">
+        Admin
+      </label>
+    </div>
+    <div>
+      <button  type="submit" class="btn btn-primary" (click)="addUser()">Sign up</button>
+    </div>
   </form>
+  <br>
 </div>
 

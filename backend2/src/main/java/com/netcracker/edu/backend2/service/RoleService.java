@@ -7,5 +7,8 @@ import java.util.List;
 public interface RoleService {
     List<RoleEntity> findAll();
     RoleEntity save(RoleEntity user);
-    void delete(long id);
+    void delete(int id);
+    RoleEntity getRoleEntitiesByRoleId(int id);
+
+
 }

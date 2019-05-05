@@ -11,7 +11,6 @@ public class ProductsEntity {
     private String shortDescription;
     private String longDescription;
     private String image;
-    private UsersEntity usersByCreatorId;
 
     @Id
     @Column(name = "product_id")
@@ -104,15 +103,5 @@ public class ProductsEntity {
         result = 31 * result + (longDescription != null ? longDescription.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "creator_id", referencedColumnName = "user_id", nullable = false)
-    public UsersEntity getUsersByCreatorId() {
-        return usersByCreatorId;
-    }
-
-    public void setUsersByCreatorId(UsersEntity usersByCreatorId) {
-        this.usersByCreatorId = usersByCreatorId;
     }
 }

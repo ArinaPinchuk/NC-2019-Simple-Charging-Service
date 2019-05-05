@@ -1,13 +1,15 @@
 import {Role} from "./role";
+import {Wallet} from "./wallet";
+import {Status} from "./status";
 
 export class User{
-  userId: string;
+  userId: number;
   firstName: string;
   secondName: string;
   email: string;
   login: string;
   password: string;
-  statusByStatusId: string;
-  walletsByWalletId: string;
-  roleByRoleId: string;
+  roleByRoleId: Role;
+  walletsByWalletId: Wallet;
+  statusByStatusId: Status;
 }

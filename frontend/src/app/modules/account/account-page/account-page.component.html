@@ -1,96 +1,132 @@
 <app-account-menu></app-account-menu>
-<div *ngIf="ready">
-  <h1 class="display-4">{{role.roleName}}</h1>
-  <p class="text-center">{{role.roleId}}</p>
-  <h1 class="display-4">{{role.roleName}}</h1>
-</div>
-<div *ngIf="ready_prod">
-  <li *ngFor="let product of products">{{product.name}} {{product.price}}$</li>
-</div>
-<!--<h1 class="display-4">{{products[2].image}}</h1>-->
-<!--<img ng-src="data:image/JPEG;base64,{{products[2].image}}">-->
-<table>
-  <tr *ngFor="let product of products">
-    <td><h1>{{product.name}}</h1></td>
-  </tr>
-</table>
-
-<div class="row">
-  <div class="col-md-10"><h1>Ivan Ivanov</h1>
-    <h2>ivIv123</h2></div>
-</div>
-<div><br></div>
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-2">
-    <button class="btn btn-primary" (click)="showTableSubscr()">Subscriptions</button>
+<div class="container-fluid" *ngIf="ready">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="display-4">{{user.firstName}} {{user.secondName}}</h1>
+      <h2 class="display-4">{{user.login}}</h2>
+    </div>
+    <div *ngIf="hasWallet" class="col-md-3 text-right">
+      <h2>My balance:</h2>
+      <h1>{{user.walletsByWalletId.balance}}$</h1>
+      <button class="btn btn-primary" (click)="showModal(template)">Add funds</button>
+    </div>
+    <div *ngIf="!hasWallet&&!isAdmin" class="col-md-3 text-right">
+      <h2>Create your own wallet to start using our service</h2>
+      <button class="btn btn-primary" (click)="createWallet()">Create wallet</button>
   </div>
+</div>
+<ng-template #template>
+  <div class="modal-header">
+    <h1>Add funds</h1>
+  </div>
+  <div class="modal-body">
+  <form>
+    <div class="form-group">
+      <label for="inputSum">Sum:</label>
+      <input type="number" class="form-control" name= "sum" id="inputSum" [(ngModel)]="sum" #Sum="ngModel" required/>
+      <!--<input class="form-control" id="inputSum" name="sum" [(ngModel)]="sum" #sum="ngModel" type="number"  value="5" min="5"  step="10" required pattern="^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$"/>-->
+    </div>
+    <button class="btn btn-primary" (click)="addFunds()">Add</button>
+  </form>
+  </div>
+</ng-template>
+
+<!--<div class="row">
+  <div class="col-md-1"></div>
   <div class="col-md-2">
     <button class="btn btn-danger" (click)="showTableServices()">Services</button>
   </div>
-</div>
+</div>-->
 <div><br></div>
-<div class="row">
-  <div class="col-md-4">
-    <div class="table-responsive" *ngIf="isTableSubscr">
+<div class="container-fluid">
+  <div class="row">
+  <div *ngIf="isAdmin" class="col-md-4">
+    <h1>Subscriptions</h1>
+    <div class="table-responsive" *ngIf="ready_subscriptions">
       <table class="table table-hover table-bordered">
         <thead>
         <tr class="table-active">
+          <th>User</th>
           <th>Services</th>
-          <th>$ per day</th>
-          <th>Rest days</th>
+          <th>Balance</th>
+          <th>***</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th>Netflix</th>
-          <th>0.8</th>
-          <th>14</th>
-        </tr>
-        <tr>
-          <th>Yandex Music</th>
-          <th>0.4</th>
-          <th>10</th>
-        </tr>
-        <tr>
-          <th>Ivi</th>
-          <th>0.6</th>
-          <th>19</th>
+        <tr *ngFor="let s of user_subscriptions">
+          <th>
+            <div class="text-center">
+            <br>
+            {{s.usersByUserId.firstName}} {{s.usersByUserId.secondName}}
+            </div>
+          </th>
+          <th>{{s.productsByProductId.name}}</th>
+          <th>{{s.usersByUserId.walletsByWalletId.balance}}</th>
+          <th > <button *ngIf= "s.usersByUserId.walletsByWalletId.balance<0 && s.usersByUserId.statusByStatusId.statusId!=2" class="btn btn-primary" (click)="blockUser(s.usersByUserId)" >Block</button>
+          <p *ngIf="s.usersByUserId.statusByStatusId.statusId==2">blocked</p></th>
         </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <div class="col-md-1"></div>
+    <div *ngIf="!isAdmin" class="col-md-4">
+      <h1>My Subscriptions</h1>
+      <div class="table-responsive" *ngIf="ready_subscriptions">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr class="table-active">
+            <th>Services</th>
+            <th>$ per day</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let s of user_subscriptions">
+            <th>
+              <div class="text-center">
+                <img src={{s.productsByProductId.image}} alt="image">
+                <br>
+                {{s.productsByProductId.name}}
+              </div>
+            </th>
+            <th>{{s.productsByProductId.price}}</th>
+            <th>{{s.productsByProductId.shortDescription}}</th>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
   <div class="col-md-4">
-    <div class="table-responsive" *ngIf="isTableServices">
+    <h1>Services</h1>
+    <div class="table-responsive" *ngIf="ready_prod">
       <table class="table table-hover table-bordered">
         <thead>
         <tr class="table-active">
           <th>Services</th>
           <th>$ per day</th>
+          <th>Description</th>
+          <th *ngIf="!isAdmin">***</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th>Netflix</th>
-          <th>0.8</th>
-        </tr>
-        <tr>
-          <th>Yandex Music</th>
-          <th>0.4</th>
-        </tr>
-        <tr>
-          <th>Ivi</th>
-          <th>0.6</th>
-        </tr>
-        <tr>
-          <th>Vk Music</th>
-          <th>0.4</th>
+        <tr *ngFor="let p of products; let i=index">
+          <th>
+            <div class="text-center">
+              <img src={{p.image}} alt="image" class="little_img">
+              <br>
+              {{p.name}}
+            </div>
+          </th>
+          <th>{{p.price}}</th>
+          <th>{{p.shortDescription}}</th>
+          <th *ngIf="!isAdmin&&!isSubscribed[i]"><button class="btn btn-primary" (click)="addSubscription(p,  i)" >Subscribe</button></th>
         </tr>
         </tbody>
       </table>
     </div>
+  </div>
   </div>
 </div>
 
+</div>

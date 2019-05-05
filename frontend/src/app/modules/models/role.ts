@@ -1,5 +1,9 @@
 export class Role {
-  roleId: string;
+  roleId: number;
   roleName: string;
 
+constructor (id: number)
+{
+  this.roleId=id;
+}
 }

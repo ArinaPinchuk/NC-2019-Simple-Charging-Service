@@ -7,5 +7,4 @@ export interface Product{
   shortDescription:string;
   longDescription:string;
   image: string;
-  usersByCreatorId: User;
 }

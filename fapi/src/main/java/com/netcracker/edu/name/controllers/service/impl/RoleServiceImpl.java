@@ -4,7 +4,11 @@ import com.netcracker.edu.name.controllers.models.RoleEntity;
 import com.netcracker.edu.name.controllers.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -26,14 +30,20 @@ public class RoleServiceImpl implements RoleService {
         RoleEntity[] rolesResponse = restTemplate.getForObject(backendServerUrl + "/api/role", RoleEntity[].class);
         return rolesResponse == null ? Collections.emptyList() : Arrays.asList(rolesResponse);
     }
-
     @Override
     public RoleEntity save(RoleEntity role) {
-        /*user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/user", user, User.class).getBody();*/
-        return null;
+        return restTemplate.postForEntity(backendServerUrl + "/api/role", role, RoleEntity.class).getBody();
     }
+
+    /*@Override
+    public RoleEntity save(RoleEntity role) {
+
+        *//*user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForEntity(backendServerUrl + "/api/user", user, User.class).getBody();*//*
+        return null;
+    }*/
 
     /*@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

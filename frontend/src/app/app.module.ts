@@ -17,13 +17,14 @@ import {TestComponent} from "./modules/main/test/test.component";
 import {ModalModule} from "ngx-bootstrap";
 import { LoginModalComponent } from './modules/main/login-modal/login-modal.component';
 import {RoleModule} from "./modules/account/account-page/role.module";
+import {FormsModule} from "@angular/forms";
 
 
 const routes=[{path:'', component: HomePageComponent},
   {path:'signup', component: SignupPageComponent},
   {path:'login', component: LoginPageComponent},
   {path:'services', component: ServicesPageComponent},
-  {path:'account', component: AccountPageComponent},
+  {path:'account/:login', component: AccountPageComponent},
   {path:'test', component: TestComponent},
   {path:'eWallet', component: EWalletPageComponent},
 ]
@@ -42,6 +43,7 @@ const routes=[{path:'', component: HomePageComponent},
     LoginModalComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

@@ -2,23 +2,31 @@ body {
   background: url(../../../../assets/images/1.png);
   color: #fff;
 }
-wid {
-  margin-left: 20px;
-  /*top: 150px;*/
-  /*left		: 30px;*/
-  width		: 50%;
-}
+
 h1
 {
   color:black;
-  padding-left: 20px;
 }
 h2
 {
   color:black;
-  padding-left: 20px;
+  font-family: cursive;
+  font-size: 180%;
 }
 li{
   color:black;
   size: 20px;
+}
+input
+{
+  width:20%;
+}
+label{
+  color:black;
+}
+img {
+  width: 70%;
+}
+.little_img{
+  width:30%;
 }
