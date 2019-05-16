@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginModalComponent} from "../login-modal/login-modal.component";
-import {BsModalService} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-home-page',
@@ -10,15 +8,10 @@ import {BsModalService} from "ngx-bootstrap";
 export class HomePageComponent implements OnInit {
 
 
-  constructor(private modalService: BsModalService) {
+  constructor() {
   }
 
   ngOnInit() {
-  }
-
-  onClick(/*template: TemplateRef<any>*/) {
-    /*this.modalService.show(template);*/
-    this.modalService.show(LoginModalComponent);
   }
 
 }

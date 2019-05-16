@@ -1,48 +1,47 @@
 <app-menu></app-menu>
-<div  class="container parent">
-  <form>
-    <div class="form-group">
-      <label for="inputFirstName">First name</label>
-      <input type="text" class="form-control" name="firstName" id="inputFirstName"  placeholder="Enter first name" [(ngModel)]="newUser.firstName" #firstName="ngModel" required/>
-    </div>
-    <div class="form-group">
-      <label for="inputSecondName">Second name</label>
-      <input type="text" class="form-control" name="secondName" id="inputSecondName"  placeholder="Enter second name" [(ngModel)]="newUser.secondName" #secondName="ngModel" required/>
-    </div>
-    <div class="form-group">
-      <label for="inputEmail">Email address</label>
-      <input type="text" class="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="newUser.email" #email="ngModel" required/>
-    </div>
-    <div class="form-group">
-      <label for="inputLogin">Login</label>
-      <input type="text" class="form-control" name= "login" id="inputLogin"  placeholder="Enter login" [(ngModel)]="newUser.login" #login="ngModel" required/>
-    </div>
 
-
-    <div class="form-group">
-      <label for="inputPassword1">Password</label>
-      <input type="text" class="form-control" name="password" id="inputPassword1" placeholder="Password" [(ngModel)]="newUser.password" #password="ngModel" required/>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword2">Repeat password</label>
-      <input type="text" class="form-control" id="inputPassword2" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <label>Role:</label>
-      <br>
-      <label>
-        <input type="radio" value="2" name="role" [(ngModel)]="role">
-        User
-      </label>
-      <label class="label_marg">
-        <input  type="radio"  value="1" name="role" [(ngModel)]="role">
-        Admin
-      </label>
-    </div>
-    <div>
-      <button  type="submit" class="btn btn-primary" (click)="addUser()">Sign up</button>
-    </div>
-  </form>
-  <br>
+<div *ngIf="ready"  class="container parent">
+<form [formGroup]="userReactiveForm" (submit)="onSubmit()">
+  <div class="form-group col-md-3">
+    <label for="firstName">First name:</label>
+    <input type="text" class="form-control" id="firstName" formControlName="firstName" />
+  </div>
+  <div class="error" *ngIf="isControlInvalid('firstName')">
+    Use english letters
+  </div>
+  <div class="form-group col-md-3">
+    <label for="secondName">Second name:</label>
+    <input type="text" class="form-control" id="secondName" formControlName="secondName" />
+  </div>
+  <div class="error" *ngIf="isControlInvalid('secondName')">
+    Use english letters
+  </div>
+  <div class="form-group col-md-3">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" formControlName="email" />
+  </div>
+  <div class="form-group col-md-3">
+    <label for="login">Login</label>
+    <input type="text" class="form-control" id="login" formControlName="login" />
+  </div>
+  <div class="form-group col-md-3">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" formControlName="password" />
+  </div>
+  <div class="error"
+       *ngIf="userReactiveForm.get('password').getError('invalidPassword') && userReactiveForm.get('password').touched">
+    {{userReactiveForm.get('password').getError('invalidPassword')}}
+  </div>
+  <div class="form-group col-md-3">
+    <label for="role">Role</label>
+    <select id="role" class="form-control" formControlName="role">
+      <option disabled value="null">choose</option>
+      <option *ngFor="let userType of userTypes">{{userType}}</option>
+    </select>
+  </div>
+  <button class="btn btn-success label_marg"  type="submit">Sign Up</button>
+</form>
 </div>
+<hr/>
+<div>{{userReactiveForm.value|json}}</div>
 

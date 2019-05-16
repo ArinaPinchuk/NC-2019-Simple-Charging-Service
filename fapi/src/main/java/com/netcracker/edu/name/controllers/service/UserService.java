@@ -10,5 +10,7 @@ public interface UserService {
     UsersEntity save(UsersEntity user);
     UsersEntity addWallet(UsersEntity user);
     UsersEntity blockUser(UsersEntity user);
+    UsersEntity registerUser(UsersEntity user);
+    List<UsersEntity> findByRoleId(int roleId);
 
 }

@@ -37,4 +37,11 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return restTemplate.postForEntity(backendServerUrl + "/api/subscription", subscription, SubscriptionsEntity.class).getBody();
 
     }
+
+    @Override
+    public void deleteSubscription(Integer id) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(backendServerUrl + "/api/subscription/" + id);
+    }
+
 }

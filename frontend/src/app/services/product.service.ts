@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Product} from "../modules/models/product";
+import {Product} from "../models/product";
 
 @Injectable()
 // Data service
@@ -25,6 +25,10 @@ export class ProductService { //todo create interface
 
   getProductById(id: string): Observable<Product> {
     return this.http.get<Product>('/api/product/' + id);
+  }
+  getPage(page:number)
+  {
+    return this.http.get('/api/product/page?page='+page);
   }
 
 }

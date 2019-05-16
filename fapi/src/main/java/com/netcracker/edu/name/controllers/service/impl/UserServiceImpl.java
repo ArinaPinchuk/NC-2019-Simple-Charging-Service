@@ -1,18 +1,23 @@
 package com.netcracker.edu.name.controllers.service.impl;
 
+import com.netcracker.edu.name.controllers.models.SubscriptionsEntity;
 import com.netcracker.edu.name.controllers.models.UsersEntity;
 import com.netcracker.edu.name.controllers.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 
 
+import java.util.*;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 @Service("customUserDetailsService")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     @Value("${backend.server.url}")
     private String backendServerUrl;
 
@@ -46,5 +51,31 @@ public class UserServiceImpl implements UserService {
         return restTemplate.postForEntity(backendServerUrl + "/api/user/block", user, UsersEntity.class).getBody();
     }
 
-//нужно подключить security
+    @Override
+    public UsersEntity registerUser(UsersEntity user) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForEntity(backendServerUrl + "/api/user/register", user, UsersEntity.class).getBody();
+    }
+
+    @Override
+    public List<UsersEntity> findByRoleId(int roleId) {
+        RestTemplate restTemplate = new RestTemplate();
+        UsersEntity[] usersResponse = restTemplate.getForObject(backendServerUrl+"/api/user/role/"+roleId, UsersEntity[].class);
+        return usersResponse == null ? Collections.emptyList() : Arrays.asList(usersResponse);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        UsersEntity user = findByLogin(s);
+        if (user == null) {
+            throw new UsernameNotFoundException("Invalid username or password.");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), getAuthority(user));
+
+    }
+    private Set<SimpleGrantedAuthority> getAuthority(UsersEntity user) {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRoleByRoleId()));
+        return authorities;
+    }
 }

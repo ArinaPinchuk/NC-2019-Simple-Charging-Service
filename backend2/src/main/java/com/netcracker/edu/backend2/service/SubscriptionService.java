@@ -8,5 +8,7 @@ public interface SubscriptionService{
     List<SubscriptionsEntity> findAll();
     List<SubscriptionsEntity> findSubscriptionsByUserId(int id);
     SubscriptionsEntity save(SubscriptionsEntity subscription);
+    void delete(SubscriptionsEntity subscription);
+    void deleteBillingAccount(Integer id);
 
 }

@@ -114,7 +114,7 @@ public class UsersEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "wallet_id", referencedColumnName = "wallet_id", nullable = false)
+    @JoinColumn(name = "wallet_id", referencedColumnName = "wallet_id")
     public WalletsEntity getWalletsByWalletId() {
         return walletsByWalletId;
     }

@@ -8,5 +8,6 @@ public interface SubscriptionService {
     List<SubscriptionsEntity> findAll();
     List<SubscriptionsEntity> findByUserId(int userId);
     SubscriptionsEntity save(SubscriptionsEntity subscription);
+    void deleteSubscription(Integer id);
 
 }

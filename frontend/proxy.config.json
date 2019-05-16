@@ -1,4 +1,13 @@
 {
+  "/api/product/page": {
+    "target": {
+      "host": "localhost",
+      "protocol": "http:",
+      "port": 8085
+    },
+    "secure": false,
+    "logLevel": "info"
+  },
   "/api/*": {
     "target": {
       "host": "localhost",

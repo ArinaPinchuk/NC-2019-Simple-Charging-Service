@@ -4,6 +4,8 @@ import com.netcracker.edu.backend2.entities.ProductsEntity;
 import com.netcracker.edu.backend2.repository.ProductRepository;
 import com.netcracker.edu.backend2.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -24,6 +26,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void delete(long id) {
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<ProductsEntity> findAll(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 }
 

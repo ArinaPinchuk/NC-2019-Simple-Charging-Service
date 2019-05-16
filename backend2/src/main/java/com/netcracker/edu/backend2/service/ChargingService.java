@@ -20,17 +20,22 @@ public class ChargingService {
     @Autowired
     WalletService walletService;
 
-    @Scheduled(fixedDelay = 10000000)
+    @Scheduled(fixedDelay = 1000*60*60*24)
     public void chargeMoney() {
         ArrayList<SubscriptionsEntity> subscriptionsEntities=new ArrayList<>(subscriptionService.findAll());
         for(SubscriptionsEntity subscription:subscriptionsEntities)
         {
             double price = subscription.getProductsByProductId().getPrice();
-            UsersEntity user =subscription.getUsersByUserId();
+            UsersEntity user = subscription.getUsersByUserId();
             WalletsEntity wallet =user.getWalletsByWalletId();
             wallet.setBalance(wallet.getBalance()-price);
             walletService.save(wallet);
+            subscription.setDays(subscription.getDays()-1);
+            if(subscription.getDays()<=0)
+            {
+                subscriptionService.delete(subscription);
+            }
+            else subscriptionService.save(subscription);
         }
-
     }
 }

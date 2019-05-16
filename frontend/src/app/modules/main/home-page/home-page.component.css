@@ -1,12 +1,10 @@
 .image {
   position	: absolute;
-  width		: auto; /* for IE 6 */
+  width		: auto;
   z-index: 1;
 }
 h1 {
   position	: relative;
-  /*top		: 100px;*/
-  /*left		: 30px;*/
   font-style:italic;
   z-index: 2;
   padding-top: 30px;
@@ -15,17 +13,8 @@ h1 {
 h2 {
   position	: relative;
   margin-left: 20px;
-  /*top: 150px;*/
-  /*left		: 30px;*/
   width		: 50%;
   font-style:italic;
   font-size: 120%;
   z-index: 2;
 }
-
-button
-{
-  position:relative;;
-  z-index: 2;
-}
-

@@ -1,132 +1,31 @@
 <app-account-menu></app-account-menu>
-<div class="container-fluid" *ngIf="ready">
+<div class="container-fluid" *ngIf="accountService.ready">
   <div class="row">
     <div class="col-md-6">
-      <h1 class="display-4">{{user.firstName}} {{user.secondName}}</h1>
-      <h2 class="display-4">{{user.login}}</h2>
+      <h1 class="display-4">{{accountService.user.firstName}} {{accountService.user.secondName}}</h1>
+      <h2 class="display-4">{{accountService.user.login}}</h2>
+      <h3 *ngIf="accountService.user.roleByRoleId.roleId==2"> Status: {{accountService.user.statusByStatusId.statusName}}</h3>
     </div>
-    <div *ngIf="hasWallet" class="col-md-3 text-right">
-      <h2>My balance:</h2>
-      <h1>{{user.walletsByWalletId.balance}}$</h1>
-      <button class="btn btn-primary" (click)="showModal(template)">Add funds</button>
-    </div>
-    <div *ngIf="!hasWallet&&!isAdmin" class="col-md-3 text-right">
-      <h2>Create your own wallet to start using our service</h2>
-      <button class="btn btn-primary" (click)="createWallet()">Create wallet</button>
-  </div>
+    <div class="col-md-5"><app-wallet></app-wallet></div>
+    <div class="col-md-1"><br><button class="btn btn-dark" (click)="logOut()">Log out</button></div>
 </div>
-<ng-template #template>
-  <div class="modal-header">
-    <h1>Add funds</h1>
-  </div>
-  <div class="modal-body">
-  <form>
-    <div class="form-group">
-      <label for="inputSum">Sum:</label>
-      <input type="number" class="form-control" name= "sum" id="inputSum" [(ngModel)]="sum" #Sum="ngModel" required/>
-      <!--<input class="form-control" id="inputSum" name="sum" [(ngModel)]="sum" #sum="ngModel" type="number"  value="5" min="5"  step="10" required pattern="^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$"/>-->
-    </div>
-    <button class="btn btn-primary" (click)="addFunds()">Add</button>
-  </form>
-  </div>
-</ng-template>
 
-<!--<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-2">
-    <button class="btn btn-danger" (click)="showTableServices()">Services</button>
-  </div>
-</div>-->
 <div><br></div>
 <div class="container-fluid">
   <div class="row">
-  <div *ngIf="isAdmin" class="col-md-4">
+  <div *ngIf="accountService.isAdmin" class="col-md-6">
     <h1>Subscriptions</h1>
-    <div class="table-responsive" *ngIf="ready_subscriptions">
-      <table class="table table-hover table-bordered">
-        <thead>
-        <tr class="table-active">
-          <th>User</th>
-          <th>Services</th>
-          <th>Balance</th>
-          <th>***</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let s of user_subscriptions">
-          <th>
-            <div class="text-center">
-            <br>
-            {{s.usersByUserId.firstName}} {{s.usersByUserId.secondName}}
-            </div>
-          </th>
-          <th>{{s.productsByProductId.name}}</th>
-          <th>{{s.usersByUserId.walletsByWalletId.balance}}</th>
-          <th > <button *ngIf= "s.usersByUserId.walletsByWalletId.balance<0 && s.usersByUserId.statusByStatusId.statusId!=2" class="btn btn-primary" (click)="blockUser(s.usersByUserId)" >Block</button>
-          <p *ngIf="s.usersByUserId.statusByStatusId.statusId==2">blocked</p></th>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+    <app-subscription-table></app-subscription-table>
   </div>
-    <div *ngIf="!isAdmin" class="col-md-4">
+    <div *ngIf="!accountService.isAdmin" class="col-md-5">
       <h1>My Subscriptions</h1>
-      <div class="table-responsive" *ngIf="ready_subscriptions">
-        <table class="table table-hover table-bordered">
-          <thead>
-          <tr class="table-active">
-            <th>Services</th>
-            <th>$ per day</th>
-            <th>Description</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let s of user_subscriptions">
-            <th>
-              <div class="text-center">
-                <img src={{s.productsByProductId.image}} alt="image">
-                <br>
-                {{s.productsByProductId.name}}
-              </div>
-            </th>
-            <th>{{s.productsByProductId.price}}</th>
-            <th>{{s.productsByProductId.shortDescription}}</th>
-          </tr>
-          </tbody>
-        </table>
-      </div>
+      <app-user-subscription-table></app-user-subscription-table>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
   <div class="col-md-4">
     <h1>Services</h1>
-    <div class="table-responsive" *ngIf="ready_prod">
-      <table class="table table-hover table-bordered">
-        <thead>
-        <tr class="table-active">
-          <th>Services</th>
-          <th>$ per day</th>
-          <th>Description</th>
-          <th *ngIf="!isAdmin">***</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let p of products; let i=index">
-          <th>
-            <div class="text-center">
-              <img src={{p.image}} alt="image" class="little_img">
-              <br>
-              {{p.name}}
-            </div>
-          </th>
-          <th>{{p.price}}</th>
-          <th>{{p.shortDescription}}</th>
-          <th *ngIf="!isAdmin&&!isSubscribed[i]"><button class="btn btn-primary" (click)="addSubscription(p,  i)" >Subscribe</button></th>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+    <app-product-table></app-product-table>
   </div>
   </div>
 </div>
-
 </div>

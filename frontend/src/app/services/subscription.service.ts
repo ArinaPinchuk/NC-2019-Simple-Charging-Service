@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Role} from "../modules/models/role";
-import {Subscription_} from "../modules/models/subscription";
-import {User} from "../modules/models/user";
+import {Role} from "../models/role";
+import {Subscription_} from "../models/subscription";
+import {User} from "../models/user";
 
 @Injectable()
 // Data service
@@ -22,6 +22,9 @@ export class SubscriptionService { //todo create interface
   }
   saveSubscription(subscription: Subscription_): Observable<Subscription_> {
     return this.http.post<Subscription_>('/api/subscription', subscription);
+  }
+  deleteSubscription(subscriptionId: string): Observable<void> {
+    return this.http.delete<void>('/api/subscription/' + subscriptionId);
   }
 
 }

@@ -26,4 +26,15 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     public SubscriptionsEntity save(SubscriptionsEntity subscription) {
         return subscriptionRepository.save(subscription);
     }
+
+    @Override
+    public void delete(SubscriptionsEntity subscription) {
+        subscriptionRepository.delete(subscription);
+    }
+
+    @Override
+    public void deleteBillingAccount(Integer id) {
+        subscriptionRepository.deleteById(id);
+    }
+
 }

@@ -3,19 +3,14 @@
   <form>
     <div class="form-group">
       <label for="inputLogin">Email address</label>
-      <input type="login" class="form-control" id="inputLogin" aria-describedby="loginHelp" placeholder="Enter login" #login>
-      <small id="loginHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <input type="login" class="form-control" id="inputLogin"  placeholder="Enter login" #login>
     </div>
     <div class="form-group">
       <label for="inputPassword1">Password</label>
-      <input type="password" class="form-control" id="inputPassword1" placeholder="Password">
-    </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="remember">
-      <label class="form-check-label" for="remember">Remember me</label>
+      <input type="password" class="form-control" id="inputPassword1" placeholder="Password" #password>
     </div>
     <div class="child">
-      <button type="submit" class="btn btn-primary" (click)="clickFunc(login.value)">Log in</button>
+      <button type="submit" class="btn btn-primary" (click)="clickLogin(login.value, password.value)">Log in</button>
     </div>
   </form>
 </div>

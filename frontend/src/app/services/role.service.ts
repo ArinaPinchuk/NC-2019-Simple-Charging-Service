@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Role} from "../modules/models/role";
+import {Role} from "../models/role";
 
 @Injectable()
 // Data service

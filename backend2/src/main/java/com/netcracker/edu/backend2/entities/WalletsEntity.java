@@ -15,6 +15,10 @@ public class WalletsEntity {
         return walletId;
     }
 
+    public void setWalletId(int walletId) {
+        this.walletId = walletId;
+    }
+
     public void setWalletId(Integer walletId) {
         this.walletId = walletId;
     }

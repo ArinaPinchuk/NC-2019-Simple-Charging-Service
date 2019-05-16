@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Wallet} from "../modules/models/wallet";
+import {Wallet} from "../models/wallet";
 
 @Injectable()
 // Data service

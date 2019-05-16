@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 public class SubscriptionsEntity {
     private Timestamp date;
     private int subscriptionId;
+    private int days;
     private UsersEntity usersByUserId;
     private ProductsEntity productsByProductId;
 
@@ -31,6 +32,16 @@ public class SubscriptionsEntity {
         this.subscriptionId = subscriptionId;
     }
 
+    @Basic
+    @Column(name = "days")
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,6 +50,7 @@ public class SubscriptionsEntity {
         SubscriptionsEntity that = (SubscriptionsEntity) o;
 
         if (subscriptionId != that.subscriptionId) return false;
+        if (days != that.days) return false;
         if (date != null ? !date.equals(that.date) : that.date != null) return false;
 
         return true;
@@ -48,6 +60,7 @@ public class SubscriptionsEntity {
     public int hashCode() {
         int result = date != null ? date.hashCode() : 0;
         result = 31 * result + subscriptionId;
+        result = 31 * result + days;
         return result;
     }
 

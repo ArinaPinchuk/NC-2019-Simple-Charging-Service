@@ -4,10 +4,19 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 public class SubscriptionsEntity {
+
     private Timestamp date;
     private int subscriptionId;
     private UsersEntity usersByUserId;
     private ProductsEntity productsByProductId;
+    private int days;
+
+    public int getDays() {
+        return days;
+    }
+    public void setDays(int days) {
+        this.days = days;
+    }
 
     public Timestamp getDate() {
         return date;

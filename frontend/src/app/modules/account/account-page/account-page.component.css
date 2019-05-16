@@ -13,6 +13,11 @@ h2
   font-family: cursive;
   font-size: 180%;
 }
+h3
+{
+  color:black;
+  font-size: 150%;
+}
 li{
   color:black;
   size: 20px;
@@ -29,4 +34,12 @@ img {
 }
 .little_img{
   width:30%;
+}
+li{
+  color:black;
+  font-family: cursive;
+  font-size: 120%;
+}
+.gray{
+  color:gray;
 }

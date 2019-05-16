@@ -1,8 +1,6 @@
 package com.netcracker.edu.backend2.controllers;
 
-import com.netcracker.edu.backend2.entities.RoleEntity;
 import com.netcracker.edu.backend2.entities.SubscriptionsEntity;
-import com.netcracker.edu.backend2.entities.UsersEntity;
 import com.netcracker.edu.backend2.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,5 +26,13 @@ public class SubscriptionController {
     @RequestMapping(method = RequestMethod.POST)
     public SubscriptionsEntity saveSubscription(@RequestBody SubscriptionsEntity subscription) {
         return subscriptionService.save(subscription);
+    }
+    /*@RequestMapping(method = RequestMethod.DELETE)
+    public void deleteSubscription(@RequestBody SubscriptionsEntity subscription) {
+        subscriptionService.delete(subscription);
+    }*/
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteSubscription(@PathVariable(name = "id") Integer id) {
+        subscriptionService.deleteBillingAccount(id);
     }
 }
