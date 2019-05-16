@@ -1,19 +1,18 @@
 <app-menu></app-menu>
-
 <div *ngIf="ready"  class="container parent">
 <form [formGroup]="userReactiveForm" (submit)="onSubmit()">
   <div class="form-group col-md-3">
     <label for="firstName">First name:</label>
     <input type="text" class="form-control" id="firstName" formControlName="firstName" />
   </div>
-  <div class="error" *ngIf="isControlInvalid('firstName')">
+  <div class="error red" *ngIf="isControlInvalid('firstName')">
     Use english letters
   </div>
   <div class="form-group col-md-3">
     <label for="secondName">Second name:</label>
     <input type="text" class="form-control" id="secondName" formControlName="secondName" />
   </div>
-  <div class="error" *ngIf="isControlInvalid('secondName')">
+  <div class="error red" *ngIf="isControlInvalid('secondName')">
     Use english letters
   </div>
   <div class="form-group col-md-3">
@@ -28,7 +27,7 @@
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password" formControlName="password" />
   </div>
-  <div class="error"
+  <div class="error red"
        *ngIf="userReactiveForm.get('password').getError('invalidPassword') && userReactiveForm.get('password').touched">
     {{userReactiveForm.get('password').getError('invalidPassword')}}
   </div>
@@ -43,5 +42,5 @@
 </form>
 </div>
 <hr/>
-<div>{{userReactiveForm.value|json}}</div>
+<!--<div>{{userReactiveForm.value|json}}</div>-->
 

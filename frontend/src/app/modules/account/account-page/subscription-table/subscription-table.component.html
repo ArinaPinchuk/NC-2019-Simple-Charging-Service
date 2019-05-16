@@ -18,13 +18,13 @@
         </div>
       </th>
       <th ><ul *ngIf="entry.value">
-        <li *ngFor="let subs of entry.value">{{subs.productsByProductId.name}}</li>
+        <li *ngFor="let subs of entry.value">{{subs.productsByProductId.name}} - {{subs.days}} days</li>
       </ul>
         <div class= "gray" *ngIf="entry.value.length==0">no subscriptions</div>
       </th>
       <th>
         <div *ngIf="entry.key.walletsByWalletId">
-        {{entry.key.walletsByWalletId.balance}}
+        {{entry.key.walletsByWalletId.balance.toFixed(2)}}
         </div>
         <div class= "gray" *ngIf="!entry.key.walletsByWalletId">
           no wallet

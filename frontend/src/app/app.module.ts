@@ -18,13 +18,14 @@ import {TokenStorage} from "./services/token.storage";
 import {AuthService} from "./services/auth.service";
 import {LoginModule} from "./modules/main/login-page/login.module";
 import {UserValidationService} from "./services/userValidation.service";
+import {AuthGuard} from "./auth.guard";
 
 
 const routes=[{path:'', component: HomePageComponent},
   {path:'signup', component: SignupPageComponent},
   {path:'login', component: LoginPageComponent},
   {path:'services', component: ServicesPageComponent},
-  {path:'account/:login', component: AccountPageComponent},
+  {path:'account/:login', component: AccountPageComponent, canActivate:[AuthGuard]},
 ]
 
 @NgModule({
@@ -50,7 +51,8 @@ const routes=[{path:'', component: HomePageComponent},
 
   providers: [ AuthService, UserValidationService, TokenStorage,{provide: HTTP_INTERCEPTORS,
     useClass: Interceptor,
-    multi : true}],
+    multi : true},
+  AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

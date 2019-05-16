@@ -70,18 +70,11 @@ export class SignupPageComponent implements OnInit {
   }
   onSubmit() {
     const controls = this.userReactiveForm.controls;
-
-    /** Проверяем форму на валидность */
     if (this.userReactiveForm.invalid) {
-      /** Если форма не валидна, то помечаем все контролы как touched*/
       Object.keys(controls)
         .forEach(controlName => controls[controlName].markAsTouched());
-      /** Прерываем выполнение метода*/
       return;
     }
-
-    /** TODO: Обработка данных формы */
-
     let user: User=new User();
     user.firstName=this.userReactiveForm.value.firstName;
     user.secondName=this.userReactiveForm.value.secondName;
@@ -95,7 +88,7 @@ export class SignupPageComponent implements OnInit {
       this.authService.attemptAuth(user.login, user.password).subscribe(
         data => {
           this.token.signOut();
-          this.token.saveToken(data.token);
+          this.token.saveToken(data.token, user.login);
           this._router.navigate(['account', user.login]);
         }
       );
@@ -121,34 +114,20 @@ export class SignupPageComponent implements OnInit {
     if(this.role=="1")
       this.newUser.roleByRoleId=new Role(1);
     else this.newUser.roleByRoleId=new Role(2);
-
-
     this.subscriptions.push(this.userService.saveUser(this.newUser).subscribe(() => {
     }));
-    /*this.role.roleName="AAA";
-    this.subscriptions.push(this.roleService.saveRole(this.role).subscribe(() => {
-    }));*/
-
   }
 
- /* ClickButton()
-  {this.popup.show();}*/
-  /** Валидатор пароля */
   private passwordValidator(control: FormControl): ValidationErrors {
     const value = control.value;
-    /** Проверка на содержание цифр */
     const hasNumber = /[0-9]/.test(value);
-    /** Проверка на содержание заглавных букв */
     const hasCapitalLetter = /[A-Z]/.test(value);
-    /** Проверка на содержание прописных букв */
     const hasLowercaseLetter = /[a-z]/.test(value);
-    /** Проверка на минимальную длину пароля */
     const isLengthValid = value ? value.length > 7 : false;
-    /** Общая проверка */
     const passwordValid = hasNumber && hasCapitalLetter && hasLowercaseLetter && isLengthValid;
 
     if (!passwordValid) {
-      return { invalidPassword: 'Пароль не прошел валидацию' };
+      return { invalidPassword: 'Invalid password, use numbers, capitals, lowers, length > 7' };
     }
     return null;
   }

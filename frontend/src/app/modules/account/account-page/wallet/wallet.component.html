@@ -1,0 +1,27 @@
+<div *ngIf="accountService.hasWallet" >
+  <h2>My balance:</h2>
+  <h1>{{accountService.user.walletsByWalletId.balance.toFixed(2)}}$</h1>
+  <button class="btn btn-primary" (click)="showModal(template)">Add funds</button>
+</div>
+<div *ngIf="!accountService.hasWallet&&!accountService.isAdmin">
+  <h2>Create your own wallet to start using our service</h2>
+  <h3>*Initial contribution is 10$</h3>
+  <button class="btn btn-primary" (click)="accountService.createWallet()">Create wallet</button>
+</div>
+<ng-template #template>
+  <div class="modal-header">
+    <h1>Add funds</h1>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="inputSum">Sum:</label>
+        <input type="number" min="0" class="form-control" name="amount" id="inputSum" [(ngModel)]="sum" required/>
+        <div *ngIf="sum < 0" class="red">
+          Please, enter positive number
+        </div>
+      </div>
+      <button class="btn btn-primary" (click)="addFunds()">Add</button>
+    </form>
+  </div>
+</ng-template>

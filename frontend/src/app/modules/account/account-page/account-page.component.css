@@ -33,7 +33,7 @@ img {
   width: 70%;
 }
 .little_img{
-  width:30%;
+  width:50%;
 }
 li{
   color:black;
@@ -42,4 +42,7 @@ li{
 }
 .gray{
   color:gray;
+}
+.red{
+  color: red;
 }

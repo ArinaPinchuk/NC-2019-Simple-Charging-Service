@@ -31,8 +31,7 @@ export class AccountService
   constructor(private userService: UserService, private productService: ProductService,
               private subscriptionService: SubscriptionService, private walletService: WalletService){}
 
-  loadData(login: string)
-  {
+  loadData(login: string) {
 
     this.subscriptions.push(this.userService.getUserByLogin(login).subscribe(u=>{
         this.user=u;
@@ -46,6 +45,7 @@ export class AccountService
           this.allSubscriptions();
         }
         else this.userSubscriptions();
+
       }));
   }
   loadProducts()
@@ -131,6 +131,7 @@ export class AccountService
       this.subscr_subscr.push(this.subscriptionService.getSubscriptionsByUserId(this.user.userId).subscribe(s=>{
         this.user_subscriptions=s;
         this.isSubscribed[i]=true;
+        this.user.walletsByWalletId.balance-=product.price;
       }));
     }));
   }
@@ -162,10 +163,12 @@ export class AccountService
   }
   logOut()
   {
+
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
     this.subscriptions2.forEach(subscription => subscription.unsubscribe());
     this.subscr_subscr.forEach(subscription => subscription.unsubscribe());
     this.product_subscr.forEach(subscription => subscription.unsubscribe());
+    this.ready = false;
 
   }
 

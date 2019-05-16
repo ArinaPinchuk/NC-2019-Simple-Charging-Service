@@ -35,3 +35,7 @@ input.ng-touched.ng-invalid{
 input.ng-pending{
   border: 1px solid yellow;
 }
+.red
+{
+  color:red;
+}

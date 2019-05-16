@@ -28,7 +28,7 @@ export class ProductTableComponent implements OnInit  {
               private modalService: BsModalService, private _bsModalRef: BsModalRef) { }
   addSubscription(){
     this.accountService.addSubscription(this.product, this.num, this.days);
-    this._bsModalRef.hide();
+    this.modalService.hide(1);
   }
   openModal(template: TemplateRef<any>, product: Product, i: number)
   {

@@ -25,11 +25,7 @@ public class ChargingService {
         ArrayList<SubscriptionsEntity> subscriptionsEntities=new ArrayList<>(subscriptionService.findAll());
         for(SubscriptionsEntity subscription:subscriptionsEntities)
         {
-            double price = subscription.getProductsByProductId().getPrice();
-            UsersEntity user = subscription.getUsersByUserId();
-            WalletsEntity wallet =user.getWalletsByWalletId();
-            wallet.setBalance(wallet.getBalance()-price);
-            walletService.save(wallet);
+            onceChargeMoney(subscription);
             subscription.setDays(subscription.getDays()-1);
             if(subscription.getDays()<=0)
             {
@@ -38,4 +34,13 @@ public class ChargingService {
             else subscriptionService.save(subscription);
         }
     }
+    public void onceChargeMoney(SubscriptionsEntity subscription) {
+        double price = subscription.getProductsByProductId().getPrice();
+        UsersEntity user = subscription.getUsersByUserId();
+        WalletsEntity wallet =user.getWalletsByWalletId();
+        wallet.setBalance(wallet.getBalance()-price);
+        walletService.save(wallet);
+    }
+
+
 }

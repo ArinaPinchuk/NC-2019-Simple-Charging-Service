@@ -1,8 +1,10 @@
 package com.netcracker.edu.backend2.controllers;
 
+import com.netcracker.edu.backend2.entities.SubscriptionsEntity;
 import com.netcracker.edu.backend2.entities.UsersEntity;
 import com.netcracker.edu.backend2.service.RoleService;
 import com.netcracker.edu.backend2.service.StatusService;
+import com.netcracker.edu.backend2.service.SubscriptionService;
 import com.netcracker.edu.backend2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,6 +23,8 @@ public class UserController {
 
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private SubscriptionService subscriptionService;
     @Autowired
     private StatusService statusService;
 
@@ -58,6 +63,11 @@ public class UserController {
     @RequestMapping(value = "/block", method = RequestMethod.POST)
     public UsersEntity blockUser(@RequestBody UsersEntity user) {
         user.setStatusByStatusId(statusService.getStatusEntityByStatusId(blocked));
+        ArrayList<SubscriptionsEntity> subscriptions = new ArrayList<>(subscriptionService.findSubscriptionsByUserId(user.getUserId()));
+        for(SubscriptionsEntity subscription: subscriptions)
+        {
+            subscriptionService.delete(subscription);
+        }
         return userService.save(user);
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST)

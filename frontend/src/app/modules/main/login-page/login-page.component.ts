@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit {
     this.authService.attemptAuth(username, password).subscribe(
       data => {
         this.token.signOut();
-        this.token.saveToken(data.token);
+        this.token.saveToken(data.token, username);
         this._router.navigate(['account', username]);
       }
     );
