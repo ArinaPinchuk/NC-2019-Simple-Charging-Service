@@ -1,0 +1,41 @@
+<div class="table-responsive" *ngIf="ready()">
+  <table class="table table-hover table-bordered table-striped">
+    <thead>
+    <tr class="table-active">
+      <th>User</th>
+      <th>Subscriptions</th>
+      <th>Balance</th>
+      <th>***</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let entry of accountService.all_subscriptions| keyvalue">
+      <th>
+        <div class="text-center">
+          <br>
+          {{entry.key.firstName}} {{entry.key.secondName}}
+          <h4>{{entry.key.login}}</h4>
+        </div>
+      </th>
+      <th ><ul *ngIf="entry.value">
+        <li *ngFor="let subs of entry.value">{{subs.productsByProductId.name}}</li>
+      </ul>
+        <div class= "gray" *ngIf="entry.value.length==0">no subscriptions</div>
+      </th>
+      <th>
+        <div *ngIf="entry.key.walletsByWalletId">
+        {{entry.key.walletsByWalletId.balance}}
+        </div>
+        <div class= "gray" *ngIf="!entry.key.walletsByWalletId">
+          no wallet
+        </div>
+      </th>
+      <th>
+        <div *ngIf = "entry.key.walletsByWalletId&&entry.key.walletsByWalletId.balance<0 && entry.key.statusByStatusId.statusId!=2">
+        <button class="btn btn-primary" (click)="blockUser(entry.key)" >Block</button>
+        </div>
+        <p *ngIf="entry.key.statusByStatusId.statusId==2">blocked</p></th>
+    </tr>
+    </tbody>
+  </table>
+</div>

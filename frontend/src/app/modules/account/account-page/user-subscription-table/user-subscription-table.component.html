@@ -1,0 +1,28 @@
+<div class="table-responsive" *ngIf="accountService.ready_subscriptions">
+  <table class="table table-hover table-bordered">
+    <thead>
+    <tr class="table-active">
+      <th>Services</th>
+      <th>$ per day</th>
+      <th>Description</th>
+      <th>Remaining days</th>
+      <th>***</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let s of accountService.user_subscriptions">
+      <th>
+        <div class="text-center">
+          <img src={{s.productsByProductId.image}} alt="image">
+          <br>
+          {{s.productsByProductId.name}}
+        </div>
+      </th>
+      <th>{{s.productsByProductId.price}}</th>
+      <th>{{s.productsByProductId.shortDescription}}</th>
+      <th>{{s.days}}</th>
+      <th><button class="btn btn-primary" (click)="unsubscribe(s)">Unsubscribe</button>></th>
+    </tr>
+    </tbody>
+  </table>
+</div>
