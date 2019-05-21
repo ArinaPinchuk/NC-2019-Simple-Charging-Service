@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service("ProductDetailsService")
 public class ProductServiceImpl implements ProductService {
@@ -27,13 +24,6 @@ public class ProductServiceImpl implements ProductService {
         ProductsEntity[] productsResponse = restTemplate.getForObject(backendServerUrl + "/api/product", ProductsEntity[].class);
         return productsResponse == null ? Collections.emptyList() : Arrays.asList(productsResponse);
     }
-    @Override
-    public ProductsEntity save(ProductsEntity productsEntity) {
-        /*user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/user", user, User.class).getBody();*/
-        return null;
-    }
 
     @Override
     public Page<ProductsEntity> findAll(int page) {
@@ -41,6 +31,20 @@ public class ProductServiceImpl implements ProductService {
         RestPageImpl<ProductsEntity> productsResponse = restTemplate.getForObject(backendServerUrl +
                 "/api/product/page?page="+ page , RestPageImpl.class);
         return productsResponse;
+    }
+
+    @Override
+    public ProductsEntity findById(int id) {
+        RestTemplate restTemplate = new RestTemplate();
+        ProductsEntity productResponse = restTemplate.getForObject(backendServerUrl+"/api/product/"+id, ProductsEntity.class);
+        return productResponse;
+    }
+
+    @Override
+    public List<ProductsEntity> startWith(String str) {
+        RestTemplate restTemplate = new RestTemplate();
+        ProductsEntity[] productsResponse = restTemplate.getForObject(backendServerUrl + "/api/product?startWith="+ str, ProductsEntity[].class);
+        return productsResponse == null ? Collections.emptyList() : Arrays.asList(productsResponse);
     }
 }
 class RestPageImpl<T> extends PageImpl<T>{

@@ -5,6 +5,8 @@ import java.util.Objects;
 public class WalletsEntity {
     private Integer walletId;
     private double balance;
+    private String cardType;
+    private String cardNumber;
 
     public Integer getWalletId() {
         return walletId;
@@ -22,5 +24,19 @@ public class WalletsEntity {
         this.balance = balance;
     }
 
+    public String getCardType() {
+        return cardType;
+    }
 
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
 }

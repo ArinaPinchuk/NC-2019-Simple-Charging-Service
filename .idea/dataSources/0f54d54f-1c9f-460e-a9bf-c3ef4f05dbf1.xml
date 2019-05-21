@@ -1344,7 +1344,19 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="324" parent="282" name="PRIMARY">
+    <column id="324" parent="282" name="card_type">
+      <Position>3</Position>
+      <DataType>enum(&apos;Viza&apos;, &apos;Mastercard&apos;)|0e</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="325" parent="282" name="card_number">
+      <Position>4</Position>
+      <DataType>varchar(16)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="326" parent="282" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>wallet_id</ColNames>
       <Primary>1</Primary>

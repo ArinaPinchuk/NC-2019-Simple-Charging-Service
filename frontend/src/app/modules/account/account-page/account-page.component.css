@@ -3,46 +3,66 @@ body {
   color: #fff;
 }
 
-h1
-{
-  color:black;
+h1 {
+  color: black;
 }
-h2
-{
-  color:black;
+
+h2 {
+  color: black;
   font-family: cursive;
   font-size: 180%;
 }
-h3
-{
-  color:black;
+
+h3 {
+  color: black;
   font-size: 150%;
 }
-li{
-  color:black;
+h4
+{
+  color: darkslategray;
+  font-size: 130%;
+}
+.marg
+{
+  margin-left: 10%;
+}
+li {
+  color: black;
   size: 20px;
 }
-input
-{
-  width:20%;
+select.ng-touched.ng-invalid {
+  border-color: red;
 }
-label{
-  color:black;
+
+.wid {
+  width: 20%;
 }
+
+label {
+  color: black;
+}
+
 img {
   width: 70%;
 }
-.little_img{
-  width:50%;
+
+.little_img {
+  width: 50%;
 }
-li{
-  color:black;
+
+li {
+  color: black;
   font-family: cursive;
   font-size: 120%;
 }
-.gray{
-  color:gray;
+
+.gray {
+  color: gray;
 }
-.red{
+
+.red {
   color: red;
+}
+input.ng-touched.ng-invalid {
+  border-color: red;
 }

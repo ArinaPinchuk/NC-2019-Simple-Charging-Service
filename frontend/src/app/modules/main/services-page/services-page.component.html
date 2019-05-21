@@ -1,14 +1,19 @@
 <app-menu></app-menu>
 <div class="container">
-    <div *ngIf="ready">
-      <div class="row" *ngFor="let item of products let i = index">
-      <div class="col-md-3 p" >{{item.name}}</div>
-      <div class="col-md-4 " > <img src={{item.image}} alt="image"></div>
-        <div class="col-md-5">
-          <div  *ngIf="!isMore[i]" class="descr">{{item.shortDescription}}...
-            <button  class="btn btn-primary"  (click)="showMore(i)">More</button></div>
-          <div  *ngIf="isMore[i]" class="descr">{{item.longDescription}} <button  class="btn btn-primary" (click)="showMore(i)">Hide</button> </div>
+  <br>
+  <input type="text" (keyup.enter)="_onSearch($event)" class="form-control" placeholder="Search products...">
+  <div *ngIf="ready">
+    <div class="row" *ngFor="let item of products " >
+      <div class="col-md-3 p">{{item.name}}</div>
+      <div class="col-md-4 "><img src={{item.image}} alt="image"></div>
+      <div class="col-md-5">
+        <div *ngIf="!isMore[item.productId]" class="descr">{{item.shortDescription}}...
+          <button class="btn btn-primary" (click)="showMore(item.productId)">More</button>
         </div>
+        <div *ngIf="isMore[item.productId]" class="descr">{{item.longDescription}}
+          <button class="btn btn-primary" (click)="showMore(item.productId)">Hide</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

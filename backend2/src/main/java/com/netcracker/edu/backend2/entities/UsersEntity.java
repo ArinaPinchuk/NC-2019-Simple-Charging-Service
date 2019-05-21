@@ -16,6 +16,7 @@ public class UsersEntity {
     private RoleEntity roleByRoleId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     public int getUserId() {
         return userId;

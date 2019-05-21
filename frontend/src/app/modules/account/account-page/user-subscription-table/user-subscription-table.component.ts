@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../../../services/account.service";
 import {Subscription_} from "../../../../models/subscription";
 
@@ -9,11 +9,13 @@ import {Subscription_} from "../../../../models/subscription";
 })
 export class UserSubscriptionTableComponent implements OnInit {
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService) {
+  }
 
   ngOnInit() {
   }
-  unsubscribe(subscription: Subscription_){
+
+  unsubscribe(subscription: Subscription_) {
     this.accountService.unsubscribe(subscription);
   }
 

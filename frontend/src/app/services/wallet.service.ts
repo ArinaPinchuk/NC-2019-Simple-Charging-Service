@@ -9,6 +9,7 @@ export class WalletService { //todo create interface
 
   constructor(private http: HttpClient) {
   }
+
   saveWallet(wallet: Wallet): Observable<Wallet> {
     return this.http.post<Wallet>('/api/wallet', wallet);
   }

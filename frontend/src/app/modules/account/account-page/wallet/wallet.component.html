@@ -1,14 +1,15 @@
-<div *ngIf="accountService.hasWallet" >
+<div *ngIf="accountService.hasWallet">
+  <h4>{{accountService.user.walletsByWalletId.cardType}} {{accountService.user.walletsByWalletId.cardNumber.slice(0, 6)}}***</h4>
   <h2>My balance:</h2>
   <h1>{{accountService.user.walletsByWalletId.balance.toFixed(2)}}$</h1>
-  <button class="btn btn-primary" (click)="showModal(template)">Add funds</button>
+  <button class="btn btn-primary" (click)="showModal(addTemplate)">Add funds</button>
 </div>
 <div *ngIf="!accountService.hasWallet&&!accountService.isAdmin">
   <h2>Create your own wallet to start using our service</h2>
   <h3>*Initial contribution is 10$</h3>
-  <button class="btn btn-primary" (click)="accountService.createWallet()">Create wallet</button>
+  <button class="btn btn-primary" (click)="showModal(createTemplate)">Create wallet</button>
 </div>
-<ng-template #template>
+<ng-template #addTemplate>
   <div class="modal-header">
     <h1>Add funds</h1>
   </div>
@@ -16,7 +17,7 @@
     <form>
       <div class="form-group">
         <label for="inputSum">Sum:</label>
-        <input type="number" min="0" class="form-control" name="amount" id="inputSum" [(ngModel)]="sum" required/>
+        <input type="number" min="0" class="form-control wid" name="amount" id="inputSum" [(ngModel)]="sum" required/>
         <div *ngIf="sum < 0" class="red">
           Please, enter positive number
         </div>
@@ -25,3 +26,27 @@
     </form>
   </div>
 </ng-template>
+<ng-template #createTemplate>
+  <div class="modal-header">
+    <h1>Enter your card</h1>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="walletReactiveForm" (submit)="createWallet()">
+      <div class="form-group">
+        <label for="inputSum">Enter your card:</label>
+        <div class="form-group col-md-3">
+          <label for="num">Number</label>
+          <select id="num" class="form-control" formControlName="cardType">
+            <option disabled value="{{cardTypes[0]}}">choose</option>
+            <option *ngFor="let cardType_item of cardTypes">{{cardType_item}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="type"></label><input type="text" class="form-control" id="type" formControlName="cardNumber"/>
+        </div>
+      </div>
+      <button class="btn btn-success" type="submit">Create</button>
+    </form>
+  </div>
+</ng-template>
+

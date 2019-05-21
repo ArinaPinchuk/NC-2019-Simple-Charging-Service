@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../../models/user";
 import {UserService} from "../../../services/user.service";
 import {Observable, Subscription} from "rxjs";
@@ -26,20 +26,23 @@ export class SignupPageComponent implements OnInit {
   users: User[];
   userTypes: string[];
   ready: boolean;
-  constructor(private userService: UserService, private roleService:RoleService, private fb: FormBuilder,
-              private userValidationService: UserValidationService, private _router: Router, private token: TokenStorage, private authService: AuthService) { }
+
+  constructor(private userService: UserService, private roleService: RoleService, private fb: FormBuilder,
+              private userValidationService: UserValidationService, private _router: Router, private token: TokenStorage, private authService: AuthService) {
+  }
 
   ngOnInit() {
 
     this.userTypes = ['admin', 'user'];
     this.initForm();
-    this.subscriptions.push(this.userService.getUsers().subscribe(users=> {
+    this.subscriptions.push(this.userService.getUsers().subscribe(users => {
       this.users = users;
-      this.ready=true;
+      this.ready = true;
 
     }));
   }
-  initForm(){
+
+  initForm() {
     this.userReactiveForm = this.fb.group({
       firstName: ['', [
         Validators.required,
@@ -68,6 +71,7 @@ export class SignupPageComponent implements OnInit {
 
     });
   }
+
   onSubmit() {
     const controls = this.userReactiveForm.controls;
     if (this.userReactiveForm.invalid) {
@@ -75,15 +79,15 @@ export class SignupPageComponent implements OnInit {
         .forEach(controlName => controls[controlName].markAsTouched());
       return;
     }
-    let user: User=new User();
-    user.firstName=this.userReactiveForm.value.firstName;
-    user.secondName=this.userReactiveForm.value.secondName;
-    user.email=this.userReactiveForm.value.email;
-    user.login=this.userReactiveForm.value.login;
-    user.password=this.userReactiveForm.value.password;
-    if(this.userReactiveForm.value.role==="admin")
-      user.roleByRoleId=new Role(1);
-    else user.roleByRoleId=new Role(2);
+    let user: User = new User();
+    user.firstName = this.userReactiveForm.value.firstName;
+    user.secondName = this.userReactiveForm.value.secondName;
+    user.email = this.userReactiveForm.value.email;
+    user.login = this.userReactiveForm.value.login;
+    user.password = this.userReactiveForm.value.password;
+    if (this.userReactiveForm.value.role === "admin")
+      user.roleByRoleId = new Role(1);
+    else user.roleByRoleId = new Role(2);
     this.subscriptions.push(this.userService.registerUser(user).subscribe(() => {
       this.authService.attemptAuth(user.login, user.password).subscribe(
         data => {
@@ -109,11 +113,11 @@ export class SignupPageComponent implements OnInit {
   loginAsyncValidator(control: FormControl): Observable<ValidationErrors> {
     return this.userValidationService.validateLogin(control.value, this.users);
   }
-  public addUser()
-  {
-    if(this.role=="1")
-      this.newUser.roleByRoleId=new Role(1);
-    else this.newUser.roleByRoleId=new Role(2);
+
+  public addUser() {
+    if (this.role == "1")
+      this.newUser.roleByRoleId = new Role(1);
+    else this.newUser.roleByRoleId = new Role(2);
     this.subscriptions.push(this.userService.saveUser(this.newUser).subscribe(() => {
     }));
   }
@@ -127,7 +131,7 @@ export class SignupPageComponent implements OnInit {
     const passwordValid = hasNumber && hasCapitalLetter && hasLowercaseLetter && isLengthValid;
 
     if (!passwordValid) {
-      return { invalidPassword: 'Invalid password, use numbers, capitals, lowers, length > 7' };
+      return {invalidPassword: 'Invalid password, use numbers, capitals, lowers, length > 7'};
     }
     return null;
   }

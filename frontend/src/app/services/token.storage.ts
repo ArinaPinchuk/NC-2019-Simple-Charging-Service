@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 const TOKEN_KEY = 'AuthToken';
 const LOGIN: string = 'Login';
@@ -6,7 +6,8 @@ const LOGIN: string = 'Login';
 @Injectable()
 export class TokenStorage {
 
-  constructor() { }
+  constructor() {
+  }
 
   signOut() {
     window.sessionStorage.removeItem(TOKEN_KEY);
@@ -17,7 +18,7 @@ export class TokenStorage {
   public saveToken(token: string, username: string) {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.removeItem(LOGIN);
-    window.sessionStorage.setItem(TOKEN_KEY,  token);
+    window.sessionStorage.setItem(TOKEN_KEY, token);
     window.sessionStorage.setItem(LOGIN, username);
   }
 

@@ -10,11 +10,11 @@ import {UserService} from "../../../services/user.service";
 import {WalletService} from "../../../services/wallet.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SubscriptionService} from "../../../services/subscription.service";
-import { SubscriptionTableComponent } from './subscription-table/subscription-table.component';
-import { ProductTableComponent } from './product-table/product-table.component';
+import {SubscriptionTableComponent} from './subscription-table/subscription-table.component';
+import {ProductTableComponent} from './product-table/product-table.component';
 import {AccountService} from "../../../services/account.service";
-import { UserSubscriptionTableComponent } from './user-subscription-table/user-subscription-table.component';
-import { WalletComponent } from './wallet/wallet.component';
+import {UserSubscriptionTableComponent} from './user-subscription-table/user-subscription-table.component';
+import {WalletComponent} from './wallet/wallet.component';
 import {BsModalRef} from "ngx-bootstrap";
 
 @NgModule({

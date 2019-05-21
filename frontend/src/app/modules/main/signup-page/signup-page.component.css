@@ -1,41 +1,43 @@
-label{
+label {
   text-align: center;
   font-family: Verdana, Arial, Helvetica, sans-serif;
-  color:#2F4F4F;
+  color: #2F4F4F;
   font-size: 110%;
 }
-input
-{
+
+input {
   size: 30px;
 }
-.parent
-{
+
+.parent {
   margin-top: 30px;
 }
-.child
-{
+
+.child {
   margin-top: 15px;
 }
-.label_marg
-{
+
+.label_marg {
   margin-left: 12px;
 }
-.сur
-{
+
+.сur {
   cursor: pointer;
 }
-button
-{
+
+button {
   position: relative;
   z-index: 10;
 }
-input.ng-touched.ng-invalid{
+
+input.ng-touched.ng-invalid {
   border-color: red;
 }
-input.ng-pending{
+
+input.ng-pending {
   border: 1px solid yellow;
 }
-.red
-{
-  color:red;
+
+.red {
+  color: red;
 }

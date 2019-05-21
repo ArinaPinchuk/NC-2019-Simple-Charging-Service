@@ -15,8 +15,9 @@ import java.util.List;
 public class SubscriptionController {
     @Autowired
     SubscriptionService subscriptionService;
+
     @GetMapping
-    public List<SubscriptionsEntity> getAllSubscriptions(){
+    public List<SubscriptionsEntity> getAllSubscriptions() {
         return subscriptionService.findAll();
     }
 
@@ -24,14 +25,16 @@ public class SubscriptionController {
     public List<SubscriptionsEntity> getUserByLogin(@PathVariable int userId) {
         return subscriptionService.findByUserId(userId);
     }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<SubscriptionsEntity> save(@RequestBody SubscriptionsEntity subscription /*todo server validation*/) {
-        if (subscription!= null) {
+        if (subscription != null) {
 
             return ResponseEntity.ok(subscriptionService.save(subscription));
         }
         return null;
     }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteSubscription(@PathVariable String id) {
         subscriptionService.deleteSubscription(Integer.valueOf(id));

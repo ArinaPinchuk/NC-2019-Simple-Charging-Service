@@ -1,25 +1,25 @@
 <ng-template #template>
   <div class="modal-header">
-    <h1>Add funds</h1>
+    <h1>Days</h1>
   </div>
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label>Sum:</label>
         <label>
           <input type="radio" value="3" name="role" [(ngModel)]="days">
           3 days
         </label>
-        <label>
-          <input  type="radio"  value="10" name="role" [(ngModel)]="days">
+        <label class="marg">
+          <input type="radio" value="10" name="role" [(ngModel)]="days">
           10 days
         </label>
-        <label>
-          <input  type="radio"  value="30" name="role" [(ngModel)]="days">
+        <label class="marg">
+          <input type="radio" value="30" name="role" [(ngModel)]="days">
           30 days
         </label>
       </div>
-      <button class="btn btn-primary" class="fa fa-close" data-dismiss="modal" (click)="addSubscription()">Subscribe</button>
+      <button class="btn btn-primary"  data-dismiss="modal" (click)="addSubscription()">Subscribe
+      </button>
     </form>
   </div>
 </ng-template>
@@ -39,14 +39,17 @@
     <tr *ngFor="let p of products; let i=index">
       <th>
         <div class="text-center">
-          <img src={{p.image}} alt="image" class="little_img">
+          <img (click)="openMore(p.productId)" src={{p.image}} alt="image" class="little_img">
           <br>
           {{p.name}}
         </div>
       </th>
       <th>{{p.price}}</th>
       <th>{{p.longDescription}}</th>
-      <th *ngIf="!accountService.isAdmin&&!accountService.isSubscribed[page*pageSize+i]&&accountService.user.statusByStatusId.statusId==1"><button class="btn btn-primary" (click)="openModal(template,p,  page*pageSize+i)" >Subscribe</button></th>
+      <th
+        *ngIf="!accountService.isAdmin&&!accountService.isSubscribed[page*pageSize+i]&&accountService.user.statusByStatusId.statusId==1">
+        <button class="btn btn-primary" (click)="openModal(template,p,  page*pageSize+i)">Subscribe</button>
+      </th>
     </tr>
     </tbody>
   </table>
@@ -54,6 +57,6 @@
 <hr>
 <ul class="nav nav-pills">
   <li class="nav-item" *ngFor="let p of pages; let i=index">
-    <a class="nav-link" href="" (click)="setPage(i, $event)" [ngClass]="{'active': i==page}">{{i+1}}</a>
+    <a class="nav-link" href="" (click)="setPage(i, $event)" [ngClass]="{'active': i==page}">{{i + 1}}</a>
   </li>
 </ul>

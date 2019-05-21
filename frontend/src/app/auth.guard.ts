@@ -3,10 +3,9 @@ import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class AuthGuard implements CanActivate{
+export class AuthGuard implements CanActivate {
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean> | boolean{
-    console.log(window.sessionStorage.getItem("Login"), route.params['login'])
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     return window.sessionStorage.getItem("Login") === route.params['login'];
   }
 }

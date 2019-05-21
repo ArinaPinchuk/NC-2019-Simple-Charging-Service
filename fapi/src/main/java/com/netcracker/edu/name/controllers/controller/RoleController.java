@@ -17,7 +17,7 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping
-    public List<RoleEntity> getAllRoles(){
+    public List<RoleEntity> getAllRoles() {
         return roleService.findAll();
     }
 
@@ -35,7 +35,6 @@ public class RoleController {
         }
         return null;
     }*/
-
 
 
 }

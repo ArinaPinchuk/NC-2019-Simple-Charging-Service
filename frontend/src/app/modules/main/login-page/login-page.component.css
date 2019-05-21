@@ -1,15 +1,15 @@
-label{
+label {
   text-align: center;
   font-family: Verdana, Arial, Helvetica, sans-serif;
-  color:#2F4F4F;
+  color: #2F4F4F;
   font-size: 110%;
 }
-.parent
-{
+
+.parent {
   margin-top: 30px;
 }
-.child
-{
+
+.child {
   margin-top: 15px;
   margin-bottom: 30px;
 }

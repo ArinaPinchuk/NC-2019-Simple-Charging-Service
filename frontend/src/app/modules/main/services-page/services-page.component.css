@@ -1,19 +1,19 @@
-.p
-{
+.p {
   text-align: center;
   font-family: Verdana, Arial, Helvetica, sans-serif;
-  color:#2F4F4F;
+  color: #2F4F4F;
   font-size: 170%;
   margin-top: 70px;
 }
-img
-{
+
+img {
   margin-top: 20px;
+  width: 40%;
 }
-.descr
-{
+
+.descr {
   font-family: Verdana, Arial, Helvetica, sans-serif;
-  color:#2F4F4F;
+  color: #2F4F4F;
   font-size: 120%;
   margin-top: 70px;
 }

@@ -8,9 +8,12 @@ import org.springframework.data.domain.PageRequest;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductService {
     List<ProductsEntity> findAll();
-    ProductsEntity save(ProductsEntity product);
     Page<ProductsEntity> findAll(int page);
+    ProductsEntity findById(int id);
+    List<ProductsEntity> startWith(String str);
+
 }

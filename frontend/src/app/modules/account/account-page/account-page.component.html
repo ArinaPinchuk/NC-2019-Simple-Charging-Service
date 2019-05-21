@@ -4,28 +4,33 @@
     <div class="col-md-6">
       <h1 class="display-4">{{accountService.user.firstName}} {{accountService.user.secondName}}</h1>
       <h2 class="display-4">{{accountService.user.login}}</h2>
-      <h3 *ngIf="accountService.user.roleByRoleId.roleId==2"> Status: {{accountService.user.statusByStatusId.statusName}}</h3>
+      <h3 *ngIf="accountService.user.roleByRoleId.roleId==2">
+        Status: {{accountService.user.statusByStatusId.statusName}}</h3>
     </div>
-    <div class="col-md-5"><app-wallet></app-wallet></div>
-    <div class="col-md-1"><br><button class="btn btn-dark" (click)="logOut()">Log out</button></div>
-</div>
+    <div class="col-md-5" >
+      <app-wallet></app-wallet>
+    </div>
+    <div class="col-md-1"><br>
+      <button class="btn btn-dark" (click)="logOut()">Log out</button>
+    </div>
+  </div>
 
-<div><br></div>
-<div class="container-fluid">
-  <div class="row">
-  <div *ngIf="accountService.isAdmin" class="col-md-6">
-    <h1>Subscriptions</h1>
-    <app-subscription-table></app-subscription-table>
-  </div>
-    <div *ngIf="!accountService.isAdmin" class="col-md-5">
-      <h1>My Subscriptions</h1>
-      <app-user-subscription-table></app-user-subscription-table>
+  <div><br></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div *ngIf="accountService.isAdmin" class="col-md-6">
+        <h1>Subscriptions</h1>
+        <app-subscription-table></app-subscription-table>
+      </div>
+      <div *ngIf="!accountService.isAdmin" class="col-md-5">
+        <h1>My Subscriptions</h1>
+        <app-user-subscription-table></app-user-subscription-table>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-4">
+        <h1>Services</h1>
+        <app-product-table></app-product-table>
+      </div>
     </div>
-    <div class="col-md-1"></div>
-  <div class="col-md-4">
-    <h1>Services</h1>
-    <app-product-table></app-product-table>
   </div>
-  </div>
-</div>
 </div>

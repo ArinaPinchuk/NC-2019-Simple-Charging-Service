@@ -26,9 +26,13 @@ export class ProductService { //todo create interface
   getProductById(id: string): Observable<Product> {
     return this.http.get<Product>('/api/product/' + id);
   }
-  getPage(page:number)
+
+  getPage(page: number) {
+    return this.http.get('/api/product/page?page=' + page);
+  }
+  startWith(str: string):Observable<Product[]>
   {
-    return this.http.get('/api/product/page?page='+page);
+    return this.http.get<Product[]>('/api/product?startWith='+str);
   }
 
 }

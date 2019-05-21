@@ -4,6 +4,7 @@ import {BsModalService} from "ngx-bootstrap";
 import {Wallet} from "../../../models/wallet";
 import {AccountService} from "../../../services/account.service";
 import {TokenStorage} from "../../../services/token.storage";
+import {of} from "rxjs";
 
 
 @Component({
@@ -13,24 +14,23 @@ import {TokenStorage} from "../../../services/token.storage";
 })
 export class AccountPageComponent implements OnInit {
   wallet: Wallet;
-  sum:number=1;
+  sum: number = 1;
 
   constructor(
-              private activateRoute: ActivatedRoute,
-              private router: Router,
-              private modalService: BsModalService,
-              public accountService: AccountService,
-              private cdr: ChangeDetectorRef,
-              private token: TokenStorage,
-              ) {
+    private activateRoute: ActivatedRoute,
+    private router: Router,
+    private modalService: BsModalService,
+    public accountService: AccountService,
+    private token: TokenStorage,
+  ) {
   }
 
   ngOnInit() {
     const login = this.activateRoute.snapshot.params['login'];
     this.accountService.loadData(login);
   }
-  logOut()
-  {
+
+  logOut() {
     this.accountService.logOut();
     this.router.navigate(['']);
     this.token.signOut();

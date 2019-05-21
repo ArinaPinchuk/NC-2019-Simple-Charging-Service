@@ -17,22 +17,24 @@
           <h4>{{entry.key.login}}</h4>
         </div>
       </th>
-      <th ><ul *ngIf="entry.value">
-        <li *ngFor="let subs of entry.value">{{subs.productsByProductId.name}} - {{subs.days}} days</li>
-      </ul>
-        <div class= "gray" *ngIf="entry.value.length==0">no subscriptions</div>
+      <th>
+        <ul *ngIf="entry.value">
+          <li *ngFor="let subs of entry.value">{{subs.productsByProductId.name}} - {{subs.days}} days</li>
+        </ul>
+        <div class="gray" *ngIf="entry.value.length==0">no subscriptions</div>
       </th>
       <th>
         <div *ngIf="entry.key.walletsByWalletId">
-        {{entry.key.walletsByWalletId.balance.toFixed(2)}}
+          {{entry.key.walletsByWalletId.balance.toFixed(2)}}
         </div>
-        <div class= "gray" *ngIf="!entry.key.walletsByWalletId">
+        <div class="gray" *ngIf="!entry.key.walletsByWalletId">
           no wallet
         </div>
       </th>
       <th>
-        <div *ngIf = "entry.key.walletsByWalletId&&entry.key.walletsByWalletId.balance<0 && entry.key.statusByStatusId.statusId!=2">
-        <button class="btn btn-primary" (click)="blockUser(entry.key)" >Block</button>
+        <div
+          *ngIf="entry.key.walletsByWalletId&&entry.key.walletsByWalletId.balance<0 && entry.key.statusByStatusId.statusId!=2">
+          <button class="btn btn-primary" (click)="blockUser(entry.key)">Block</button>
         </div>
         <p *ngIf="entry.key.statusByStatusId.statusId==2">blocked</p></th>
     </tr>

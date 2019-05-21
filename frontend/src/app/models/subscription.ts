@@ -1,8 +1,7 @@
 import {User} from "./user";
 import {Product} from "./product";
 
-export class Subscription_
-{
+export class Subscription_ {
   date: Date;
   subscriptionId: number;
   usersByUserId: User;

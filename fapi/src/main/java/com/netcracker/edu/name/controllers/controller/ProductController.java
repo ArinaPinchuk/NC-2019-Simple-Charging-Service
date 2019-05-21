@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -20,14 +22,22 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping
-    public List<ProductsEntity> getAllProducts(){
-        List<ProductsEntity> list=productService.findAll();
-        return productService.findAll();
-    }
     @GetMapping(value = "/page")
     public ResponseEntity<Page<ProductsEntity>> getPage(@RequestParam(defaultValue = "0")int page) {
         return ResponseEntity.ok(productService.findAll(page));
     }
+    @GetMapping("/{productId}")
+    public ProductsEntity getProductById(@PathVariable int productId) {
+        return productService.findById(productId);
+    }
+    @GetMapping(value = "")
+    public List<ProductsEntity> startWith(@RequestParam(required = false) String startWith) {
+        if(StringUtils.isEmpty(startWith)) {
+            return productService.findAll();
+        } else {
+            return productService.startWith(startWith);
+        }
+    }
+
 
 }

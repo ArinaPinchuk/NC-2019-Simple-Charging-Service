@@ -20,9 +20,11 @@ export class SubscriptionService { //todo create interface
   getSubscriptionsByUserId(userId: number): Observable<Subscription_[]> {
     return this.http.get<Subscription_[]>('/api/subscription/userId/' + userId);
   }
+
   saveSubscription(subscription: Subscription_): Observable<Subscription_> {
     return this.http.post<Subscription_>('/api/subscription', subscription);
   }
+
   deleteSubscription(subscriptionId: string): Observable<void> {
     return this.http.delete<void>('/api/subscription/' + subscriptionId);
   }

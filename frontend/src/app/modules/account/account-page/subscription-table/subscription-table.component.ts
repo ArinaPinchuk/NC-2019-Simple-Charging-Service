@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Subscription_} from "../../../../models/subscription";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
@@ -17,23 +17,23 @@ export class SubscriptionTableComponent implements OnInit {
   subscr: any;
 
 
-  constructor( private router: Router,  private activateRoute: ActivatedRoute,
+  constructor(private router: Router, private activateRoute: ActivatedRoute,
               public accountService: AccountService) {
 
 
   }
+
   ngOnInit() {
-    this.subscr=this.accountService.all_subscriptions.entries();
+    this.subscr = this.accountService.all_subscriptions.entries();
   }
-  blockUser(user: User)
-  {
+
+  blockUser(user: User) {
     this.accountService.blockUser(user)
   }
-  ready(): boolean
-  {
-    if( this.accountService.ready_subscriptions)
-    {
-      this.subscr=this.accountService.all_subscriptions.entries();
+
+  ready(): boolean {
+    if (this.accountService.ready_subscriptions) {
+      this.subscr = this.accountService.all_subscriptions.entries();
     }
 
     return this.accountService.ready_subscriptions;

@@ -24,13 +24,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(long id) {
-        productRepository.deleteById(id);
+    public Page<ProductsEntity> findAll(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 
     @Override
-    public Page<ProductsEntity> findAll(Pageable pageable) {
-        return productRepository.findAll(pageable);
+    public ProductsEntity getProductById(int id) {
+        return productRepository.getProductsEntitiesByProductId(id);
+    }
+
+    @Override
+    public List<ProductsEntity> findProductsStartingWith(String str) {
+        return productRepository.findProductsEntitiesByNameStartingWith(str);
     }
 }
 

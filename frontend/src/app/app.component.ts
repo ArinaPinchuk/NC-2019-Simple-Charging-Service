@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -8,9 +8,11 @@ import {HttpClient} from "@angular/common/http";
 })
 export class AppComponent {
   title = 'arina';
-  constructor(private http: HttpClient){}
-  public clickFunction(): void
-  {
+
+  constructor(private http: HttpClient) {
+  }
+
+  public clickFunction(): void {
     this.http.get("/api/").subscribe(value => {
       console.log(value);
     })

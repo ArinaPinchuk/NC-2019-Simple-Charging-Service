@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
 import {TokenStorage} from "../../../services/token.storage";
@@ -15,7 +15,8 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
   }
-  clickLogin(username:string, password:string): void {
+
+  clickLogin(username: string, password: string): void {
     this.authService.attemptAuth(username, password).subscribe(
       data => {
         this.token.signOut();
